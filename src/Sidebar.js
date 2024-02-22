@@ -3,11 +3,21 @@ import './Sidebar.css'
 import { Button, IconButton } from '@mui/material'
 import { Add, Duo, ExpandMore, Inbox, LabelImportant, NearMe, Note, Person, Phone, Star } from '@mui/icons-material'
 import SidebarOption from './SidebarOption'
+import { useDispatch } from 'react-redux'
+import { openSendMessage } from './features/mailSlice'
 
 function Sidebar() {
+
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    dispatch(openSendMessage())
+  }
+
   return (
     <div className='sidebar'>
       <Button
+      onClick={() => handleClick()}
       startIcon={<Add/>}
       className='sidebar_compose'>Compose</Button>
 
