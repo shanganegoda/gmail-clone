@@ -3,22 +3,37 @@ import { useNavigate } from 'react-router-dom'
 import "./EmailRow.css"
 import { CheckBoxOutlineBlank, LabelImportantOutlined, StarBorderOutlined } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
+import { selectMail } from './features/mailSlice'
+import { useDispatch } from 'react-redux'
 
-function EmailRow({id, title, subject, description, time}) {
+function EmailRow({ id, title, subject, description, time }) {
 
   const navigate = useNavigate()
-  
+  const dispatch = useDispatch()
+
+  const openMail = () => {
+    dispatch(selectMail({
+      id, 
+      title,
+      subject, 
+      description,
+      time
+    }));
+
+    navigate("/mail");
+  }
+
   return (
-    <div onClick={() => navigate("/mail")} className='emailRow'>
+    <div onClick={openMail} className='emailRow'>
       <div className="emailRow__options">
         <IconButton>
-            <CheckBoxOutlineBlank/>
+          <CheckBoxOutlineBlank />
         </IconButton>
         <IconButton>
-            <StarBorderOutlined/>
+          <StarBorderOutlined />
         </IconButton>
         <IconButton>
-            <LabelImportantOutlined/>
+          <LabelImportantOutlined />
         </IconButton>
       </div>
 
@@ -28,9 +43,9 @@ function EmailRow({id, title, subject, description, time}) {
 
       <div className="emailRow__message">
         <h4>{subject}{" "}
-        <span className="emailRow__description">-
+          <span className="emailRow__description">-
             {description}
-        </span>
+          </span>
         </h4>
       </div>
 
