@@ -1,0 +1,20 @@
+.login {
+    display: grid;
+    background-color: white;
+    height: 100vh;
+    place-items: center;
+}
+
+.login__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__container > img {
+    object-fit: contain;
+    height: 200px;
+}
+
+.avatar {
+    cursor: pointer;
+}
